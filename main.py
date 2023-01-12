@@ -1,5 +1,5 @@
-#import sys
-#sys.path.insert(0, '/usr/local/lib/python3.9/site-packages/')
+import sys
+sys.path.insert(0, '/usr/local/lib/python3.9/site-packages/')
 import player
 import os
 import pyautogui
