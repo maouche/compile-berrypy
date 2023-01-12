@@ -49,7 +49,7 @@
  [],
  False,
  False,
- 1673484298,
+ 1673523636,
  [('run',
    '/home/yacine/.local/lib/python3.9/site-packages/PyInstaller/bootloader/Linux-32bit-intel/run',
    'EXECUTABLE')])

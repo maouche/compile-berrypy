@@ -6,7 +6,7 @@ block_cipher = None
 
 a = Analysis(
     ['main.py'],
-    pathex=['/usr/local/lib/python3.9/site-packages'],
+    pathex=['/usr/local/lib/python3.9/site-packages', '/usr/lib/python3.9/', '/usr/lib/python3/dist-packages/', '/home/yacine/.local/lib/python3.9/site-packages/'],
     binaries=[],
     datas=[],
     hiddenimports=[],
