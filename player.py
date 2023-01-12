@@ -12,17 +12,9 @@ import numpy as np
 def initScreen(window_name):
     # get the size of the screen
    screen = screeninfo.get_monitors()[0]
-   width, height = screen.width, screen.height
-
-   # config screen
-   image = np.ones((height, width), dtype=np.float32)
-   image[0, 0] = 0  # top-left corner
-   image[height - 2, 0] = 0  # bottom-left
-   image[0, width - 2] = 0  # top-right
-   image[height - 2, width - 2] = 0  # bottom-righ
    
    # setting screen
-   cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+   cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
    cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
    cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
@@ -34,6 +26,8 @@ def play(localVideoPath, listVideos, window_name):
    index = 0
    capture = cv2.VideoCapture(localVideoPath + "/" + listVideos[index])
    isFinished = False
+   
+   
 
    if (capture.isOpened() == False):
       print("Error Opening Video Stream Or File")
@@ -54,11 +48,26 @@ def play(localVideoPath, listVideos, window_name):
       ret, frame = capture.read()
 
       if ret == True:
-
-         cv2.imshow(window_name, frame)
+         
+         
+         frameResized = rescale_frame(frame)
+         
+         
+         
+         cv2.imshow(window_name, frameResized)
 
          if cv2.waitKey(25) == ord('q'):
             return "q"
             break
       else:
          isFinished = True
+
+
+
+
+def rescale_frame(frame):
+      # get the size of the screen
+      screen = screeninfo.get_monitors()[0]
+      width, height = screen.width, screen.height
+      dim = (width, height)
+      return cv2.resize(frame, dim, interpolation =cv2.INTER_AREA)
